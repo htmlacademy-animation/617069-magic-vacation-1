@@ -3160,7 +3160,7 @@ img {
   height: 4rem;
   color: #5f458c;
   border-radius: 50%;
-  transition: all .3s ease; }
+  transition: all 0.3s ease; }
   .social-block__toggler:focus {
     outline: none; }
   @media (max-width: 1024px) and (orientation: portrait) {
@@ -3181,7 +3181,7 @@ img {
     background-color: #ffffff;
     border: 2px solid #ffffff;
     z-index: -1;
-    transition: all .3s ease; }
+    transition: all 0.3s ease; }
   .social-block__toggler svg {
     position: absolute;
     top: 50%;
@@ -3222,7 +3222,8 @@ img {
   right: 0;
   margin-top: 1.5rem;
   opacity: 0;
-  pointer-events: none; }
+  pointer-events: none;
+  transition: opacity 0.2s linear; }
   @media (min-width: 2000px) {
     .social-block__list {
       margin-top: 15px; } }
@@ -3284,8 +3285,8 @@ img {
   color: #ffffff;
   border: 2px solid transparent;
   border-radius: 50%;
-  transform: translateY(10px);
-  opacity: 0; }
+  opacity: 0;
+  transform: translateY(10px); }
   @media (min-width: 2000px) {
     .social-block__link {
       width: 40px;
@@ -3315,7 +3316,7 @@ img {
     left: 50%;
     transform: translate(-50%, -50%); }
   .social-block__link--fb {
-    transition: all .2s ease; }
+    transition: transform 0.2s ease-out, opacity 0.6s ease-out; }
     .social-block__link--fb svg {
       width: 0.8rem;
       height: 1.7rem; }
@@ -3324,7 +3325,7 @@ img {
           width: 8px;
           height: 17px; } }
   .social-block__link--insta {
-    transition: all .4s ease; }
+    transition: transform 0.4s ease-out, opacity 0.8s ease-out; }
     .social-block__link--insta svg {
       width: 1.5rem;
       height: 1.5rem; }
@@ -3333,7 +3334,7 @@ img {
           width: 15px;
           height: 15px; } }
   .social-block__link--vk {
-    transition: all .6s ease; }
+    transition: transform 0.6s ease-out, opacity 1s ease-out; }
     .social-block__link--vk svg {
       width: 1.7rem;
       height: 1rem; }
