@@ -2,30 +2,32 @@ import throttle from 'lodash/throttle';
 
 export default class FullPageScroll {
   constructor() {
-    this.THROTTLE_TIMEOUT = 1000;
+    this.THROTTLE_TIMEOUT = 2000;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
-    this.onUrlHashChengedHandler = this.onUrlHashChenged.bind(this);
+    this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
 
   init() {
-    document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT));
+    document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: true}));
     window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
 
-    this.onUrlHashChenged();
-    this.changePageDisplay();
+    this.onUrlHashChanged();
   }
 
   onScroll(evt) {
+    const currentPosition = this.activeScreen;
     this.reCalculateActiveScreenPosition(evt.deltaY);
-    this.changePageDisplay();
+    if (currentPosition !== this.activeScreen) {
+      this.changePageDisplay();
+    }
   }
 
-  onUrlHashChenged() {
+  onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
@@ -38,8 +40,14 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-    this.screenElements.forEach((screen) => screen.classList.add(`screen--hidden`));
+    this.screenElements.forEach((screen) => {
+      screen.classList.add(`screen--hidden`);
+      screen.classList.remove(`active`);
+    });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+    setTimeout(() => {
+      this.screenElements[this.activeScreen].classList.add(`active`);
+    }, 300)
   }
 
   changeActiveMenuItem() {
@@ -64,15 +72,9 @@ export default class FullPageScroll {
 
   reCalculateActiveScreenPosition(delta) {
     if (delta > 0) {
-      this.activeScreen++;
-      if (this.activeScreen >= this.screenElements.length) {
-        this.activeScreen = 0;
-      }
+      this.activeScreen = Math.min(this.screenElements.length - 1, ++this.activeScreen);
     } else {
-      this.activeScreen--;
-      if (this.activeScreen < 0) {
-        this.activeScreen = this.screenElements.length - 1;
-      }
+      this.activeScreen = Math.max(0, --this.activeScreen);
     }
   }
 }

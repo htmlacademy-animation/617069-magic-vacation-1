@@ -83,6 +83,10 @@
     font-size: 48px;
   }
 
+  @media (min-width: $tablet) {
+    margin-right: 5.6rem;
+  }
+
   @media (max-width: $tablet) and (orientation: portrait) {
     margin-bottom: 1.8rem;
     font-size: 3.6rem;
@@ -106,16 +110,14 @@
 }
 
 .game__buttons {
-  position: absolute;
-  top: 5rem;
+  position: fixed;
   left: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   z-index: 100;
   opacity: 0.5;
+  display: none;
 }
 
 .game__button {
   margin: 0 30px 30px;
+  display: block;
 }
