@@ -6,6 +6,11 @@
       opacity: 1;
       pointer-events: auto;
     }
+
+    .social-block__link {
+      transform: none;
+      opacity: 1;
+    }
   }
 }
 
@@ -17,6 +22,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
+  transition: all 0.3s ease;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -35,6 +41,7 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+    transition: all 0.3s ease;
   }
 
   svg {
@@ -89,6 +96,7 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.2s linear;
 
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
@@ -168,6 +176,8 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  opacity: 0;
+  transform: translateY(10px);
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -207,6 +217,8 @@
   }
 
   &--fb {
+    transition: transform 0.2s ease-out, opacity 0.6s ease-out;
+
     svg {
       width: 0.8rem;
       height: 1.7rem;
@@ -219,6 +231,8 @@
   }
 
   &--insta {
+    transition: transform 0.4s ease-out, opacity 0.8s ease-out;
+
     svg {
       width: 1.5rem;
       height: 1.5rem;
@@ -231,6 +245,8 @@
   }
 
   &--vk {
+    transition: transform 0.6s ease-out, opacity 1s ease-out;
+
     svg {
       width: 1.7rem;
       height: 1rem;
