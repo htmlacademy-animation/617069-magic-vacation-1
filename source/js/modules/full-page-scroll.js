@@ -54,7 +54,9 @@ export default class FullPageScroll {
     const activeItem = Array.from(this.menuElements).find((item) => item.dataset.href === this.screenElements[this.activeScreen].id);
     if (activeItem) {
       this.menuElements.forEach((item) => item.classList.remove(`active`));
-      activeItem.classList.add(`active`);
+      setTimeout(() => {
+        activeItem.classList.add(`active`);
+      }, 500);
     }
   }
 
