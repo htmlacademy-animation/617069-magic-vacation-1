@@ -72,7 +72,7 @@
   }
 }
 
-.page--loaded {
+.page--loaded .screen.active {
   .screen__footer {
     transform: none;
   }
@@ -307,10 +307,6 @@
     background-size: auto calc(100vh - 13.8rem), 100% 25rem;
     background-position: top center, bottom center;
   }
-}
-
-.screen--prizes {
-  background-color: $c-dark;
 }
 
 .screen--game {
