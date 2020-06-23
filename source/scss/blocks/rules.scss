@@ -161,6 +161,7 @@
     text-align: center;
     animation-name: show-circle;
     animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(.6,-0.25,.34,1.51);
     animation-fill-mode: both;
 
     @media (max-width: $tablet) and (orientation: portrait) {
@@ -184,7 +185,7 @@
     margin: 0;
     opacity: 0;
     transform: translateX(30px);
-    animation-name: show-text;
+    animation-name: show-rules-text;
     animation-duration: 700ms;
     animation-timing-function: ease;
     animation-fill-mode: both;
@@ -213,19 +214,16 @@
   33% {
     color: $c-purple;
   }
-  60% {
-    transform: scale(1.1);
-  }
   100% {
     transform: scale(1);
     color: $c-light;
   }
 }
 
-@keyframes show-text {
+@keyframes show-rules-text {
   from {
     opacity: 0;
-    transform:translateX(30px)
+    transform:translateX(3rem)
   }
   to {
     opacity: 1;
@@ -239,9 +237,10 @@
   right: 5.6rem;
   overflow: hidden;
   animation-name: show-btn;
-  animation-duration: 500ms;
+  animation-duration: 250ms;
   animation-fill-mode: both;
   animation-play-state: paused;
+  transform-origin: 100% 50%;
 
   @media (min-width: $stop-scaling) {
     bottom: 60px;
@@ -273,17 +272,17 @@
 @keyframes show-btn {
   from {
     opacity: 0;
-    font-size: 0;
-    color: $c-light;
+    color: transparent;
+    transform: scaleX(.4);
   }
   5% {
     opacity: 1;
   }
-  80% {
-    font-size: 2.4rem;
-    color: $c-light;
+  90% {
+    color: transparent;
   }
   to {
+    transform: scaleX(1);
     color: $c-purple;
   }
 }
