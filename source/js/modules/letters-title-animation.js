@@ -10,7 +10,7 @@ export default () => {
       this._element = document.querySelector(this._elementSelector);
       this._timeOffset = 20;
 
-      this.prePareText();
+      this.prepareText();
     }
 
     createElement(letter, index) {
@@ -27,7 +27,7 @@ export default () => {
       return span;
     }
 
-    prePareText() {
+    prepareText() {
       if (!this._element) {
         return;
       }
@@ -37,8 +37,8 @@ export default () => {
         .filter((latter) => latter !== ``);
 
       const content = text.reduce((fragmentParent, word) => {
-        const wordElement = Array.from(word).reduce((fragment, latter, index) => {
-          fragment.appendChild(this.createElement(latter, index));
+        const wordElement = Array.from(word).reduce((fragment, letter, index) => {
+          fragment.appendChild(this.createElement(letter, index));
           return fragment;
         }, document.createDocumentFragment());
         const wordContainer = document.createElement(`span`);
